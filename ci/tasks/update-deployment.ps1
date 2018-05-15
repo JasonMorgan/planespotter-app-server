@@ -5,6 +5,6 @@ $newName
 $string = (Get-Content -Raw -Path $file.FullName) -replace "image: .*", "image: $newName"
 $string
 $string | Set-Content $file.FullName
-# Copy-Item -Recurse -Path cluster-repo/* -Destination out/
-# Get-ChildItem out
-# cat out/Deployment/$ENV:DEPLOYMENT
+Copy-Item -Recurse -Path cluster-repo/* -Destination out/
+Get-ChildItem out
+cat out/Deployment/$ENV:DEPLOYMENT
