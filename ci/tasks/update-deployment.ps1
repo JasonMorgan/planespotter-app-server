@@ -11,4 +11,4 @@ cd out
 git config --global user.email "jmorgan@f9vs.com"
 git config --global user.name "JasonMorgan"
 git add .
-git commit -m "Updated via Concourse."
+git commit -m "Updated via Concourse. Modified the deployment $ENV:DEPLOYMENT"
