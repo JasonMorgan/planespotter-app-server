@@ -8,7 +8,7 @@ params:
   DEPLOYMENT:
   IMAGE_NAME:
 inputs:
-- name: cluster-state
+- name: cluster-repo
 - name: source
 outputs:
 - name: out
