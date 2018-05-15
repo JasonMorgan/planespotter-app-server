@@ -24,7 +24,6 @@ resources: # This is where we define the resources are pipeline will work with. 
   type: git
   source:
     uri: https://github.com/JasonMorgan/infra-cluster.git
-    ignore_paths:
     branch: master
     username: ((git.username))
     password: ((git.password))
