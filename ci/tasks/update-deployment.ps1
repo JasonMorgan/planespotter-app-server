@@ -6,5 +6,8 @@ $string = (Get-Content -Raw -Path $file.FullName) -replace "image: .*", "image: 
 $string
 $string | Set-Content $file.FullName
 Copy-Item -Recurse -Path cluster-repo/* -Destination out/
+cd out
+git add .
+git commit -m "Updated via Concourse."
 Get-ChildItem out
 cat out/Deployment/$ENV:DEPLOYMENT
