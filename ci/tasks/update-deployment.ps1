@@ -1,10 +1,10 @@
 $file = Get-ChildItem -Path cluster-repo/Deployment/$ENV:DEPLOYMENT
-$newName = "$($ENV:IMAGE_NAME):$(Get-Content -Raw -Path source/ci/metadata/tag)"
+$newName = "$($ENV:IMAGE_NAME):$(Get-Content -Raw -Path bump/version)"
 $string = (Get-Content -Raw -Path $file.FullName) -replace "image: .*", "image: $newName"
 $string | Set-Content $file.FullName
-Get-ChildItem bump -Recurse | foreach { $_ | get-content}
+# Get-ChildItem bump -Recurse | foreach { $_ | get-content}
 # cat bump/ci/metadata/tag
-Get-ChildItem -path cluster-repo -force
+# Get-ChildItem -path cluster-repo -force
 Copy-Item -Recurse -Path cluster-repo/* -Destination out/ -Force
 cd out
 # git init
