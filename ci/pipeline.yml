@@ -16,6 +16,7 @@ resources: # This is where we define the resources are pipeline will work with. 
       - README.md
       - .gitignore
       - /ci/metadata/*
+      - ci/pipeline.yml
     branch: master
     username: ((git.username))
     password: ((git.password))
