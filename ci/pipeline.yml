@@ -15,6 +15,7 @@ resources: # This is where we define the resources are pipeline will work with. 
     ignore_paths: 
       - README.md
       - .gitignore
+      - /ci/metadata/*
     branch: master
     username: ((git.username))
     password: ((git.password))
