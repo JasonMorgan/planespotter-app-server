@@ -6,4 +6,5 @@ $string = (Get-Content -Raw -Path $file.FullName) -replace "image: .*", "image: 
 $string
 $string | Set-Content $file.FullName
 Copy-Item -Recurse -Path source/* -Destination out/
+Get-ChildItem out
 cat out/Deployment/$ENV:DEPLOYMENT
