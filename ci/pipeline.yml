@@ -93,10 +93,10 @@ jobs: #  We're breaking with out into 2 jobs so that we can have 2 tags associat
     trigger: true
     passed: [build-docker-image-tagged]
   - get: cluster-repo
+  - get: bump
   - task: update-deployment
     file: source/ci/tasks/update-deployment.yml
     params:
       DEPLOYMENT: planespotter-app.yml
       IMAGE_NAME: harbor.gcp.59s.io:443/59s/planespotter-app-server
-  - put: out
-    resource: cluster-repo
+  - put: cluster-repo

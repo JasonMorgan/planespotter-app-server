@@ -10,8 +10,9 @@ params:
 inputs:
 - name: cluster-repo
 - name: source
+- name: bump
 outputs:
-- name: out
+- name: cluster-repo
 run:
   path: /opt/microsoft/powershell/6.0.2/pwsh
   args: 
