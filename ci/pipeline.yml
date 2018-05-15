@@ -98,4 +98,4 @@ jobs: #  We're breaking with out into 2 jobs so that we can have 2 tags associat
     params:
       DEPLOYMENT: planespotter-app.yml
       IMAGE_NAME: harbor.gcp.59s.io:443/59s/planespotter-app-server
-  - put: planespotter-app.yml
+  - put: cluster-repo
