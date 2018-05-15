@@ -10,7 +10,6 @@ params:
 inputs:
 - name: cluster-repo
 - name: source
-- name: bump
 outputs:
 - name: out
 run:
