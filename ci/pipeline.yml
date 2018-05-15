@@ -20,6 +20,15 @@ resources: # This is where we define the resources are pipeline will work with. 
     username: ((git.username))
     password: ((git.password))
 
+- name: cluster-repo # Here we're pulling a git repo as well as naming the folder the repo will live in for the duration of the pipeline.  It's worth remembering that the name of this resource will be the name of the folder when you go to access files.
+  type: git
+  source:
+    uri: https://github.com/JasonMorgan/infra-cluster.git
+    ignore_paths:
+    branch: master
+    username: ((git.username))
+    password: ((git.password))
+
 # - name: docker-image
 #   type: docker-image
 #   source:
@@ -77,3 +86,16 @@ jobs: #  We're breaking with out into 2 jobs so that we can have 2 tags associat
   - put: docker-image
     params:
       build: source
+
+- name: update-cluster-repo
+  plan:
+  - get: source
+    trigger: true
+    passed: [build-docker-image-tagged]
+  - get: cluster-repo
+  - task: update-deployment
+    file: source/ci/tasks/update-deployment.yml
+    params:
+      DEPLOYMENT: planespotter-app.yml
+      IMAGE_NAME: harbor.gcp.59s.io:443/59s/planespotter-app-server
+  - put: planespotter-app.yml
