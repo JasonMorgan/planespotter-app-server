@@ -24,8 +24,8 @@ resources: # This is where we define the resources are pipeline will work with. 
 - name: cluster-repo # Here we're pulling a git repo as well as naming the folder the repo will live in for the duration of the pipeline.  It's worth remembering that the name of this resource will be the name of the folder when you go to access files.
   type: git
   source:
-    uri: https://github.com/JasonMorgan/infra-cluster.git
-    branch: master
+    uri: https://github.com/JasonMorgan/basic-cluster.git
+    branch: dev
     username: ((git.username))
     password: ((git.password))
 
