@@ -1,4 +1,4 @@
-$file = Get-ChildItem -Path cluster-repo/Deployment/$ENV:DEPLOYMENT
+$file = Get-ChildItem -Path cluster-repo/objects/deployments/$ENV:DEPLOYMENT
 $newName = "$($ENV:IMAGE_NAME):$(Get-Content -Raw -Path bump/version)"
 $string = (Get-Content -Raw -Path $file.FullName) -replace "image: .*", "image: $newName"
 $string | Set-Content $file.FullName
