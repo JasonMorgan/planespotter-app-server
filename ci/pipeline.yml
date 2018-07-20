@@ -25,7 +25,7 @@ resources: # This is where we define the resources are pipeline will work with. 
   type: git
   source:
     uri: https://github.com/JasonMorgan/basic-cluster.git
-    branch: dev
+    branch: Dev
     username: ((git.username))
     password: ((git.password))
 
