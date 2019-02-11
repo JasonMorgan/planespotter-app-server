@@ -1,12 +1,4 @@
 ---
-resource_types:
-
-- name: harbor-image
-  privileged: true
-  type: docker-image
-  source:
-    repository: virtmerlin/harbor-image-resource
-
 resources: # This is where we define the resources are pipeline will work with. By resources we mean concourse resources specifically, a pipeline can still use tasks which are essentially arbitrary code that will run as scripts in containers during the build.  Tasks will live in the ci/tasks directory by convention.
 - name: source # Here we're pulling a git repo as well as naming the folder the repo will live in for the duration of the pipeline.  It's worth remembering that the name of this resource will be the name of the folder when you go to access files.
   type: git
@@ -29,15 +21,6 @@ resources: # This is where we define the resources are pipeline will work with. 
     username: ((git.username))
     password: ((git.password))
 
-# - name: docker-image
-#   type: docker-image
-#   source:
-#     repository: harbor.gcp.59s.io:443/59s/planespotter-app-server
-#     username: ((harbor.username))
-#     password: ((harbor.password))  
-#     insecure_registries: ["harbor.gcp.59s.io:443"]
-    # tag: source/ci/vars/tag # so this is the literal tag don't fuck with this.  If you set it here it will be static for the duration of the pipeline.
-
 - name: bump
   type: semver
   source:
@@ -48,20 +31,12 @@ resources: # This is where we define the resources are pipeline will work with. 
     username: ((git.username))
     password: ((git.password))
 
-
 - name: docker-image
-  type: harbor-image
+  type: docker-image
   source:
     username: ((harbor.username))
     password: ((harbor.password))
-    skip_pull: true
-    repository: harbor.gcp.59s.io:443/59s/planespotter-app-server
-    harbor_host: harbor.gcp.59s.io
-    harbor_image: harbor.gcp.59s.io/59s/planespotter-app-server
-    harbor_trigger_scan: false
-    harbor_scan_thresholds:  [{"severity": 1,"count": 20},{"severity": 2,"count": 20}]
-    notary_enable: false
-    insecure_registries: ["harbor.gcp.59s.io:443"]
+    repository: harbor.aws.59s.io:443/59s/planespotter-app-server
 
 jobs: #  We're breaking with out into 2 jobs so that we can have 2 tags associated with our image.
 - name: build-docker-image-tagged # Builds the tagged version of our image and increments the version number in github.
